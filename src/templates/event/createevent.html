@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>TICKET BOX | Create Event</title>
+{% endblock header %}
+
+{% block body %}
+<section id="mainSection">
+    <div class="d-flex flex-column align-items-center mt-5 pt-5 mx-auto">
+        <form id="centerForm" action={{url_for('event.create_event')}} method="POST" role="form">
+            <label id="centerFormLabel" form="centerForm">CREATE A NEW EVENT</label>
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name" required id="nameInput" form="centerForm" type="text" class="md-form-control"
+                            onkeyup='handleFormInput(this)'>
+                        <label for="nameInput">Name of The Event</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="input-group md-form">
+                        <select name="organizer" class="col-11 md-form-control w-100" onchange='handleFormInput(this)'
+                            required form="centerForm">
+                            <option selected></option>
+                            {% for organizer in organizers  %}
+                            <option>{{organizer.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Hosting Organization</label>
+                        <a class="col-1 input-group-addon rounded-0 addBtn"
+                            href={{url_for('event.create_organizer', origin="/createevent")}}>
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group p-0 m-0">
+                <fieldset class="container-fluid p-1 m-0">
+                    <div class="col-md-6 pr-0 pr-md-4 pl-0">
+                        <div class="input-group date form_datetime md-form" data-date="2019-11-16T05:25:07Z"
+                            data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <input id="starting_date" required name="starting_date" class="md-form-control" type="text"
+                                value="" readonly onchange='handleFormInput_startdate(this)'>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            <label>Starting Date</label>
+                        </div>
+                        <input type="hidden" id="dtp_input1" value="" />
+                    </div>
+                    <div class="col-md-6 pl-0 pl-md-4 pr-0">
+                        <div class="input-group date form_datetime md-form" data-date="2019-11-16T05:25:07Z"
+                            data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input2">
+                            <input id="ending_date" required name="ending_date" class="md-form-control" type="text"
+                                value="" readonly onchange='handleFormInput_enddate(this)'>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            <label>Ending Date</label>
+                        </div>
+                        <input type="hidden" id="dtp_input2" value="" />
+                    </div>
+                    <fieldset>
+            </div>
+
+            <div class="row p-0 m-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="location" required form="centerForm" type="text" class="md-form-control"
+                            onkeyup='handleFormInput(this)'>
+                        <label>Location</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <select name="category" class="md-form-control" onchange='handleFormInput(this)' required
+                            form="centerForm">
+                            <option selected></option>
+                            {% for category in categories  %}
+                            <option>{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Event Categories</label>
+                    </div>
+                </div>
+            </div>
+            <div class="container d-flex justify-content-end m-0 p-2">
+                <a class="btn btn-outline-secondary primeBtn mr-5" id="cancel" name="cancel" data-dismiss="form"
+                    href="/{{origin}}" formnovalidate>Cancel</a>
+                <button class="btn btn-secondary primeBtn" type="submit" formvalidate>Next</button>
+            </div>
+            <p class="mt-5 text-muted text-center">©HTICKETBOX 2016-2019</p>
+        </form>
+    </div>
+</section>
+{% endblock body %}
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+{% block script %}
+{% endblock script %}

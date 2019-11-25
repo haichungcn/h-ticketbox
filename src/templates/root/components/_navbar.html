@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top pr-0">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href={{url_for('root.home')}}>HTicketBox</a>
+
+    <div class="collapse navbar-collapse mr-0 pr-3 pr-md-0" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            
+            {% if categories|length > 0 %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Categories<span class="sr-only">(current)</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for category in categories %}
+                            <a class="dropdown-item" href="{{url_for('root.home', filter=category.name)}}" method='POST'>{{category.name}}</a>                        
+                        {% endfor %}
+                    </div>
+                </li>
+            {% endif %}
+            {% if current_user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/user{{current_user.id}}" id="navbarDropdown2" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
+                    {{current_user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <a class="dropdown-item" href="/user/{{current_user.id}}">Profile</a>
+                        <a class="dropdown-item" href="{{url_for('user.signout')}}">Log out</a>                        
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/5/cart">Cart</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('user.login')}}">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('user.signup')}}">Sign up</a>
+                </li>
+            {% endif %}
+        </ul>
+        <form class="form-inline my-1 mr-0 my-lg-0 mr-2 mr-md-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-secondary my-sm-0 searchBtn" type="submit"><i
+                    class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <a class="btn btn-outline-secondary addEventBtn ml-0" href={{url_for('event.create_event', origin='root')}}><i
+            class="fa fa-plus"></i></a>
+</nav>

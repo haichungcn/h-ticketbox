@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title>TicketBox | Event</title>
+{% endblock header %}
+
+{% block body %}
+{% if not event %}
+<h1 class="mt-5 pt-5">There is no event with id#{{id}} yet</h1>
+{% else %}
+<section class="row container-fluid m-0 p-0 mt-5 pt-4" style="width:100vw;height:auto;">
+    {% if event.images|length > 0 %}
+    <img src={{event.images[0].image_url}} alt="event_image" class="w-100 h-100">    
+    {% endif %}
+</section>
+<section id="row mainSection" class="mt-5 pt-5 px-4 px-0 mx-auto">
+    <div class="col-6 mx-auto my-5">
+        {% if event.articles|length > 0 %}
+            {% for article in event.articles %}
+                <h1>{{article.title}}</h1>
+                {{article.body|safe}}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="col-6 mx-auto my-5">
+        <hr/>
+                <div class="row mb-5 m-0 p-0">
+                    <h4>Tickets:</h4>
+                </div>
+        {% if event.tickettypes|length > 0 %}
+            {% for tickettype in event.tickettypes %}
+                <div class="row mb-5">
+                    <div class="col-7 mr-5">
+                        <h5>{{tickettype.name}} : ({{tickettype.price}} VND) - {{tickettype.stock}} in stock</h5>
+                    </div>
+                    <div class="col-4 ml-5">
+                        <form id="buyingForm{{tickettype.id}}" class="form-inline" action={{url_for("user.add_to_cart", id=id, tickettype_id=tickettype.id)}} method="POST">
+                            <input class="md-form-control rounded-right-0 col-9 amountInput" id="input{{tickettype.id}}" required name="amount"
+                                type="number" value="1" min="1" max={{tickettype.stock}} step="1" data-number-to-fixed="0"
+                                data-number-stepfactor="1" form="buyingForm{{tickettype.id}}"/>
+                            <button class="btn btn-secondary addCartBtn" type="submit" formvalidate form="buyingForm{{tickettype.id}}">Add to cart</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        
+        {% endif %}
+    </div>
+    <div class="col-6 mx-auto my-5">
+        {% if event.organizers|length > 0 %}
+            {% for organizer in event.organizers %}
+                <h1>{{organizer.name}}</h1>
+                {{organizer.description|safe}}
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+{% endif %}
+
+{% endblock body %}
+
+{% block script %}
+
+{% endblock script %}

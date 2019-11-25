@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href={{url_for("static", filename = "bootstrap-datetimepicker.min.css")}}>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href={{url_for("static", filename = "icon.png")}} type="image/x-icon">
+    <link rel="stylesheet" href={{url_for("static", filename = "bootstrap.min.css")}}>
+    <link rel="stylesheet" href={{url_for("static", filename = "style.css")}}>
+    <link rel="stylesheet" href={{url_for("static", filename = "form.css")}}>
+
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+    {% block head %}
+    <title>Fullstack HTicketBox</title>
+    {% endblock head %}
+</head>
+
+<body onload="setupApp()">
+    {% include 'root/components/_navbar.html' %}
+    {% include 'root/components/_flash.html' %}
+
+    {% block body %}
+
+    {% endblock body %}
+    </section>
+
+    <script src={{url_for('static', filename='jquery-1.8.3.min.js')}}></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='bootstrap-datetimepicker.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap-datetimepicker.min.js')}}"></script>
+    <script src={{url_for('static', filename='bootstrap.min.js')}}></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script type="text/javascript">
+        $('.form_datetime').datetimepicker({
+            //language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+        $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        $('.form_time').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
+        });
+    </script>
+    <script src="{{url_for('static', filename='main.js')}}"></script>
+    {% block script %}
+    {% endblock script %}
+</body>
+
+</html>

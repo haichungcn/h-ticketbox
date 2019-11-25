@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>TICKET BOX | Create Organizer</title>
+{% endblock header %}
+
+{% block body %}
+<section id="mainSection">
+    <div class="d-flex flex-column align-items-center mt-5 pt-5 mx-auto">
+        <form id="centerForm" action={{url_for('event.create_organizer', origin=origin)}} method="POST" role="form">
+            <label id="centerFormLabel" form="centerForm">CREATE A NEW ORGANIZER</label>
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name" required id="nameInput" form="centerForm" type="text" class="md-form-control"
+                            onkeyup='handleFormInput(this)'>
+                        <label for="nameInput">Name of The Organizer</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="description" required id="nameInput" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="nameInput">Description</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="avatar_url" required form="centerForm" type="text" class="md-form-control"
+                            onkeyup='handleFormInput(this)'>
+                        <label>Avatar Url</label>
+                    </div>
+                </div>
+            </div>
+            <div class="container d-flex justify-content-end m-0 p-2">
+                <a class="btn btn-outline-secondary primeBtn mr-5" id="cancel" name="cancel" data-dismiss="form"
+                    href="/{{origin}}" formnovalidate>Cancel</a>
+                <button class="btn btn-secondary primeBtn" type="submit">Next</button>
+            </div>
+            <p class="mt-5 text-muted text-center">©HTICKETBOX 2016-2019</p>
+        </form>
+    </div>
+</section>
+{% endblock body %}
+
+{% block script %}
+{% endblock script %}

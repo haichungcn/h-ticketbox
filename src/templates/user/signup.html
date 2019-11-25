@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>TicketBox | Signup</title>
+{% endblock %}
+
+{% block body %}
+<section id="mainSection">
+<div class="userForm d-flex flex-column align-items-center">
+    <form id="centerForm" method="POST">
+        <label id="centerFormLabel" class="mb-5" form="centerForm">Create a new account</label>
+
+        <div class="col-md-12 p-1 m-0">
+            <div class="md-form">
+                <input name="username" type="username" id="inputUserName" class="md-form-control" required=""
+                    onkeyup='handleFormInput(this)' autofocus="">
+                <label for="inputUserName">Username</label>
+            </div>
+        </div>
+
+        <div class="col-md-6 p-1 m-0">
+            <div class="md-form">
+                <input name="first_name" type="firstname" id="inputFirstName" class="md-form-control"
+                    onkeyup='handleFormInput(this)' autofocus="">
+                <label for="inputFirstName">First name</label>
+            </div>
+        </div>
+
+        <div class="col-md-6 p-1 m-0">
+            <div class="md-form">
+                <input name="last_name" type="lastname" id="inputLastName" class="md-form-control"
+                    onkeyup='handleFormInput(this)' autofocus="">
+                <label for="inputLastName">Lastname</label>
+            </div>
+        </div>
+
+        <div class="col-md-12 p-1 m-0">
+            <div class="input-group date form_date md-form" data-date="2019-11-16"
+                data-date-format="dd MM yyyy" data-link-field="dtp_input2">
+                <input id="ending_date" required name="birthday" class="md-form-control" type="text" value=""
+                    readonly onchange='handleFormInput_enddate(this)'>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                <label>Birthday</label>
+            </div>
+        </div>
+
+        <div class="col-md-12 p-1 m-0">
+            <div class="md-form">
+                <input name="email" type="email" id="inputEmail" class="md-form-control" required=""
+                    onkeyup='handleFormInput(this)' autofocus="">
+                <label for="inputEmail">Email address</label>
+            </div>
+        </div>
+
+        <div class="col-md-12 p-1 m-0">
+            <div class="md-form">
+                <input name="password" type="password" id="inputPassword" class="md-form-control"
+                    onkeyup='handleFormInput(this)' required="">
+                <label for="inputPassword">Password</label>
+            </div>
+        </div>
+
+        <div class="col-md-12 p-1 m-0">
+            <div class="md-form">
+                <input name="avatar_url" type="avatarurl" id="inputAvatarUrl" class="md-form-control"
+                    onkeyup='handleFormInput(this)' required="">
+                <label for="inputAvatarUrl">Avatar URL</label>
+            </div>
+        </div>
+
+        <div class="row container m-0 py-0 px-3 mb-5">
+            <label class="links py">
+                <input class="links mr-3" type="checkbox" value="agree">Agree to all the terms & policies
+            </label>
+        </div>
+        <div class="row container-fluid d-flex justify-content-between m-0 p-0 pr-5 my-5 loginBtn">
+            <a href={{url_for('user.login')}} class="container btn btn-secondary primeBtn" formnovalidate>Cancel</a>
+            <button class="btn btn-secondary primeBtn" type="submit">Create account</button>
+        </div>
+        <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
+    </form>
+</div>
+</section>
+{% endblock %}

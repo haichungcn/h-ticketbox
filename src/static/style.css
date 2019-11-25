@@ -1,0 +1,141 @@
+:root {
+    --light-color: #fff4e4;
+    --bright-color: #f88020;
+    --medium-color: #d1274b;
+    --dark-color: #3d0e1e;
+    --brand-font: 'Comfortaa', cursive;
+}
+
+*{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-color);
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #3d0e1e;
+}
+
+h5 {
+    font-size: 1.2rem;
+}
+
+a {
+    text-decoration: none;
+    color:rgb(33, 33, 33);
+}
+
+a:hover{
+    text-decoration: none;
+    color:rgb(97, 97, 97);
+}
+
+
+.alert {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 99;
+}
+
+/* Home */
+#mainSection {
+    margin-top: 20px;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    background-color:  var(--light-color);
+}
+
+#carouselIndicators {
+    width: 90vw;
+    height: 30vh;
+}
+
+nav {
+    font-size: 1.7rem;
+    min-height: 50px;
+    background-color: var(--bright-color);
+    opacity: 0.9;
+    color: var(--dark-color);
+}
+
+.navbar-brand {
+    font-size: 2.3rem;
+    margin: 0 20px;
+    font-family: var(--brand-font);
+}
+
+.nav-item {
+    margin: 0 20px;
+}
+
+.nav-item a {
+}
+
+.searchBtn {
+    position: relative;
+    left: -43px;
+}
+
+.addEventBtn {
+    width:50px;
+    height: 35px;
+    margin-right: 20px;
+    padding:auto;
+    position: relative;
+    transition-duration: .5s;
+    overflow: hidden;
+}
+
+.addEventBtn:hover i {
+    visibility: hidden;
+}
+
+.addEventBtn:hover {
+    width:140px;
+    animation: .5s expand ease;
+}
+
+@keyframes expand {
+    from {width:50px;}
+    to {width:140px;}
+}
+
+.addEventBtn:hover::after {
+    content: "CREATE EVENT";
+    position: absolute;
+    left: 12%;
+    font-weight: bold;
+    opacity:1;
+    animation: 1s fadein ease;
+}
+
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.addEventBtn:active {
+    background-color: rgb(21, 21, 21);
+}
+
+.amountInput {
+    max-width: 100px;
+    margin-right: 40px;
+    font-size: 2rem;
+}
+
+.addCartBtn{
+    width: 100px;
+}
+
+.eventCard {
+    height: 520px;
+}

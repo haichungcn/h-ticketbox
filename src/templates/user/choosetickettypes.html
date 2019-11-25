@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block header %}
+<title>TICKET BOX | Add Images</title>
+{% endblock header %}
+
+{% block body %}
+<section id="mainSection">
+    <div class="container d-flex flex-column align-items-center mt-5 pt-5 mx-auto" id="mainForm">
+        <form id="centerForm" action={{url_for('event.add_images', id=id, origin=origin)}} method="POST"
+            role="form">
+            <label id="centerFormLabel" form="centerForm">ADD IMAGES TO EVENT #{{id}}</label>
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name1" autofocus equired id="imageInput1" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput1">Image#1 Name</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="url1" autofocus equired id="imageInput1" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput1">Image#1 URL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name2" autofocus equired id="imageInput2" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput2">Image#2 Name</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="url2" autofocus equired id="imageURLInput2" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageURLInput2">Image#2 URL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name3" autofocus equired id="imageInput3" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput3">Image#3 Name</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="url3" autofocus equired id="imageURLInput3" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageURLInput3">Image#3 URL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name4" autofocus equired id="imageInput4" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput4">Image#4 Name</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="url4" autofocus equired id="imageURLInput4" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageURLInput4">Image#4 URL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row m-0 p-0">
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="name5" autofocus equired id="imageInput5" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageInput5">Image#5 Name</label>
+                    </div>
+                </div>
+                <div class="col-md-12 p-1 m-0">
+                    <div class="md-form">
+                        <input name="url5" autofocus equired id="imageURLInput5" form="centerForm" type="text"
+                            class="md-form-control" onkeyup='handleFormInput(this)'>
+                        <label for="imageURLInput5">Image#5 URL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-end m-0 p-2">
+                <a class="btn btn-outline-secondary primeBtn mr-5" id="cancel" name="cancel" data-dismiss="form"
+                    href="/{{origin}}" formnovalidate>Cancel</a>
+                <button class="btn btn-secondary primeBtn" type="submit" formnovalidate>Submit</button>
+            </div>
+            <p class="mt-5 text-muted text-center">©HTICKETBOX 2016-2019</p>
+        </form>
+    </div>
+</section>
+{% endblock body %}
+
+{% block script %}
+<script>
+    window.onload = function () {
+        var converter = new showdown.Converter();
+        var textarea = document.getElementById('contentInput');
+        var markdownArea = document.getElementById('contentOutput');
+        var markdownHiddenArea = document.getElementById('contentOutputHidden');
+
+        var previousMarkdownValue;
+
+        var convertTextAreaToMarkdown = function () {
+            var markdownText = textarea.value;
+            previousMarkdownValue = markdownText;
+            converted_content = converter.makeHtml(markdownText);
+            markdownArea.innerHTML = converted_content;
+            markdownHiddenArea.value = converted_content;
+        };
+
+        var didChangeOccur = function () {
+            if (previousMarkdownValue != textarea.value) {
+                return true;
+            }
+            return false;
+        };
+
+        setInterval(function () {
+            if (didChangeOccur()) {
+                convertTextAreaToMarkdown();
+            }
+        }, 1000);
+
+        textarea.addEventListener('input', convertTextAreaToMarkdown);
+
+        sharejs.open('home', 'text', function (error, doc) {
+            doc.attach_textarea(textarea);
+            convertTextAreaToMarkdown();
+        });
+    };
+</script>
+{% endblock script %}

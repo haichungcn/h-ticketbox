@@ -1,0 +1,132 @@
+
+.md-form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px lightgrey;
+    width:100%;
+    line-height: 30px;
+}
+
+.input-group-addon {
+    background-color: transparent !important;
+    border: solid 0.5px lightgray !important;
+    color: gray;
+}
+
+.md-form label {
+    position: absolute;
+    left: 5px;
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.priceLabel {
+    font-weight: lighter;
+    font-size: 2rem;
+}
+
+.md-form {
+    margin-bottom: 50px;
+}
+
+.md-form input {
+    font-size: 1.8rem;
+    color: rgb(67, 67, 67);
+    background-color: transparent;
+}
+
+.md-form select {
+    font-size: 1.8rem;
+    color: rgb(67, 67, 67);
+    height: 33px;
+    width: 100%;
+}
+
+.md-form input:focus {
+    outline:none;
+}
+
+.md-form select:focus {
+    outline:none;
+}
+
+#centerForm {
+    margin-top: 40px;
+    min-width: 60%;
+}
+
+#centerFormLabel {
+    font-weight: lighter;
+    font-size: 5rem;
+    margin-bottom: 50px;
+}
+
+.smallLabel {
+    top: -20px;
+    font-size: 1.6rem!important;
+    animation: .3s slideup ease;
+}
+
+@keyframes slideup {
+    from { top: 0px; }
+    to { top: -20px; }
+}
+
+.primeBtn {
+    width: 150px;
+    height: 45px;
+    font-size: 1.8rem !important;
+}
+
+.addBtn{
+    width: 50px!important;
+    height: 30px;
+}
+
+#contentInput {
+    padding: 5px 20px;
+    font-size: 1.6rem;
+    max-width: 1000px;
+    overflow: visible;
+}
+
+#contentInput:focus {
+    outline:none;
+}
+
+#contentOutput{
+    min-height: 30px;
+    border: solid 0.5px lightgray;
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    max-width: 1000px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+#mainForm {
+    max-width: 1000px !important;
+    margin:0 auto !important;
+}
+
+.links {
+    font-weight: lighter;
+    font-size: 2rem;
+    color: gray;
+}
+
+.links:hover {
+    outline:none;
+    text-decoration: none;
+}
+
+.userForm {
+    max-width: 800px;
+}
+
+.loginBtn a {
+    width: 200px;
+    line-height: 30px;
+}

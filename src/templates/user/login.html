@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>TicketBox | Log in</title>
+{% endblock %}
+
+{% block body %}
+<section id="mainSection">
+<div class="userForm d-flex flex-column align-items-center mt-5 pt-5">
+    <form id="centerForm" method="POST">
+        <label id="centerFormLabel" class="mb-5" form="centerForm">Log in to your account</label>
+        <div class="row m-0 p-0">
+            <div class="col-md-12 p-1 m-0">
+                <div class="md-form">
+                    <input name="email" type="email" id="inputEmail" class="md-form-control" required=""
+                        onkeyup='handleFormInput(this)' autofocus="">
+                    <label for="inputEmail">Email address</label>
+                </div>
+            </div>
+            <div class="col-md-12 p-1 m-0">
+                <div class="md-form">
+                    <input name="password" type="password" id="inputPassword" class="md-form-control"
+                        onkeyup='handleFormInput(this)' required="">
+                    <label for="inputPassword">Password</label>
+                </div>
+            </div>
+        </div>
+        <div class="row container m-0 py-0 px-3 mb-5">
+            <label class="links py">
+                <input class="links mr-3" type="checkbox" value="remember-me">Remember me
+            </label>
+            <div class="col ">
+                <a class="links float-right" href={{url_for('user.forgetpassword')}}>Forget Password ?</a>
+            </div>
+        </div>
+        <div class="row container-fluid d-flex justify-content-between m-0 p-0 pr-5 my-5 loginBtn">
+            <a href={{url_for('user.signup')}} class="container btn btn-secondary primeBtn">Create an account</a>
+            <button class="btn btn-secondary primeBtn" type="submit">Sign in</button>
+        </div>
+        <p class="mt-5 mb-3 text-muted text-center">© 2017-2019</p>
+    </form>
+</div>
+</section>
+{% endblock %}

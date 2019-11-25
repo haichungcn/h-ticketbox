@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title>TicketBox | HomePage</title>
+{% endblock header %}
+
+{% block body %}
+{% if not events %}
+<h1 class="mt-5 pt-5">There is no event in this category yet</h1>
+{% else %}
+<section class="row container-fluid m-0 p-0 mt-5 pt-4">
+    <div id="carouselExampleFade" class="col-12 carousel slide m-0 p-0" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for event in events %}
+            {% if event.images|length > 0 %}
+            <div class="carousel-item active" data-interval="1000">
+                <img src="{{event.images[0].image_url}}" class="d-block w-100" alt="{{events[0].name}}" />
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<section id="row mainSection" class="mt-2 pt-5 px-4 px-0">
+    <div class="col-12 d-flex justify-content-center mb-5">
+        <h2>ALL EVENTS:</h2>
+    </div>
+    {% for event in events %}
+    <div class="card col-12 col-md-6 my-2 px-0 eventCard">
+        {% if event.images|length > 0 %}
+        <div class="card-img-top" style="overflow-y: hidden;">
+                <img src={{event.images[0].image_url}} class="card-img-top" alt="event_image" />
+        </div>
+        {% endif %}
+        <div class="card-body container">
+            <h3 class="card-title">{{event.name}}</h3>
+            <p class="card-text">
+            </p>
+            <p class="card-text">
+                {{ moment(event.start_date).format('LLL') }} - {{ moment(event.end_date).format('LLL') }}
+            </p>
+            {% for cat in event.categories %}
+            <p class="card-text">{{cat.name}}</p>
+            {% endfor %}
+        </div>
+        <div class="card-footer container">  
+            <a type="button" class="btn btn-default float-left mr-3" href={{url_for('event.create_event_ticket', id=event.id)}}> Add Tickets </a>
+            <a type="button" class="btn btn-default float-left" href={{url_for('event.add_images', id=event.id)}}> Add Images </a>
+            <a type="button" class="btn btn-default float-right" href={{url_for('event.single_event', id=event.id)}}> Choose Tickets </a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endif %}
+{% endblock body %}
+
+{% block script %}
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+{% endblock script %}
