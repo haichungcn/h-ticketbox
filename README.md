@@ -32,21 +32,21 @@ To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http:
 * [x] User (organiser) can add tickets (type + price + quantity) to an event
 
 ### Showing events
-* [ ] User (also guests)can see all upcoming events. Old events should not be shown
-* [ ] User should be able to filter events base on tags which events belong to. (optional)
+* [x] User (also guests)can see all upcoming events. Old events should not be shown
+* [x] User should be able to filter events base on tags which events belong to. (optional)
 * [ ] User should be able to sort events - base on popularity (votes), date (acs or desc) OR just who the nearest events first.
 
 ### Buying tickets
-* [ ] User should be able to buy tickets (optional: multiple tickets at once)
-* [ ] User should be able to see ticket detail ( barcode is optional - or just some thing to identify the tickets) for tickets which he already bought
+* [x] User should be able to buy tickets (optional: multiple tickets at once)
+* [x] User should be able to see ticket detail ( barcode is optional - or just some thing to identify the tickets) for tickets which he already bought
 
 ### Dashboard
 #### For users
 * [ ] See past orders (including details)
 * [ ] Change profile details
 #### For organisers
-* [ ] Manage events (change title, body, time, location)
-* [ ] Manage tickets for each event
+* [x] Manage events (change title, body, time, location)
+* [x] Manage tickets for each event
 * [ ] Statistics: Event held, Tickets sold, Revenues. (optional)
 
 ### Voting (rating)
