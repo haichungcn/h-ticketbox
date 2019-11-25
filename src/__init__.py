@@ -13,11 +13,6 @@ app.config.from_object('config.Config')
 moment = Moment(app)
 db = SQLAlchemy(app)
 
-# setup flask migration
-migrate = Migrate(app, db)
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
-
 # setup Flask-login
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -25,6 +20,11 @@ login_manager.login_view = "user.login" #redirect to login function if user not 
 
 # Models:
 from src.models import User, Role
+
+# setup flask migration
+migrate = Migrate(app, db)
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
 
 ## Setup login manager
 @login_manager.user_loader
