@@ -13,7 +13,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     timestamp = db.Column(db.DateTime(timezone=True), server_default = db.func.now())
-
+    test = db.Column(db.String(50))
     #relationship
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     events = db.relationship('Event', secondary='attends', backref=db.backref('users', lazy=True))
