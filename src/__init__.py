@@ -19,7 +19,7 @@ login_manager.init_app(app)
 login_manager.login_view = "user.login" #redirect to login function if user not logged in
 
 # Models:
-from src.models import User, Role
+from src.models import User, Role, Event, Article, Organizer, Image, Tickettype, Tickettype, Category,Order, Orderitem
 
 # setup flask migration
 migrate = Migrate(app, db)
