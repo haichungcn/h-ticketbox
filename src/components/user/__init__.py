@@ -75,7 +75,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash("successfully added user {0}".format(new_user.username), "success")
-            return redirect(url_for('root.home'))
+            return redirect(url_for('user.login'))
         else:
             flash("Username is already exist", "warning")
     return render_template('signup.html')
