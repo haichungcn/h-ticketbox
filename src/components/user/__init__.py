@@ -185,7 +185,7 @@ def update_cart(id):
                 else:
                     flash(f"We dont have enough ticket type {item.tickettype.name}", 'warning')
                     return redirect(url_for('user.cart', id=id))
-            elif change = 0:
+            elif change == 0:
                 db.session.delete(item)
             else:
                 item.tickettype.stock += change
