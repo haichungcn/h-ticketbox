@@ -13,7 +13,7 @@
         <div class="carousel-inner">
             {% for event in events %}
             {% if event.images|length > 0 %}
-            {% if index.loop == 1 %}
+            {% if loop.index == 1 %}
                 <div class="carousel-item active" data-interval="1000" style="overflow-y: hidden;">
                     <img src="{{event.images[0].image_url}}" class="d-block w-100 h-auto" alt="{{events[0].name}}" />
                 </div>
