@@ -30,6 +30,7 @@ def send_email(token, email, content):
 @login_required
 def profile(id):
     orders = Order.query.filter_by(client_id = current_user.id, isPaid = True).all()
+    print('first orders queried:', orders[0].id)
     return render_template('profile.html', orders=orders, id=id)
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
@@ -178,20 +179,20 @@ def update_cart(id):
 
         for index, item in enumerate(order.orderitems):
             new_amount = int(update_list[f'amount_{index+1}'])
-            change = new_amount - item.amount
-            if change > 0:
-                if item.tickettype.stock >= change:
-                    item.tickettype.stock -= change
-                    item.amount = new_amount
+            if new_amount != 0:
+                change = new_amount - item.amount
+                if change >= 0:
+                    if item.tickettype.stock >= change:
+                        item.tickettype.stock -= change
+                        item.amount = new_amount
+                    else:
+                        flash(f"We dont have enough ticket type {item.tickettype.name}", 'warning')
+                        return redirect(url_for('user.cart', id=id))
                 else:
-                    flash(f"We dont have enough ticket type {item.tickettype.name}", 'warning')
-                    return redirect(url_for('user.cart', id=id))
-            elif change == 0:
-                db.session.delete(item)
+                    item.tickettype.stock += change
+                    item.amount = new_amount
             else:
-                item.tickettype.stock += change
-                item.amount = new_amount
-
+                db.session.delete(item)
         db.session.commit()
         print("successfully update")
         flash('successfully update cart', "success")
