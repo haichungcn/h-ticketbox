@@ -139,3 +139,7 @@ nav {
 .eventCard {
     height: 520px;
 }
+
+.carouselExampleFade {
+    overflow-y: hidden;
+}
