@@ -120,7 +120,7 @@ def resetpassword():
         user.set_password(request.form['password'])
         db.session.commit()
         flash('successfully create new password', 'success')
-        content = f"""Hi {user.username}, Your password has been changed, please visit <a href='https://localhost:5000/user/login'>this page</a> to log in."""
+        content = f"""Hi {user.username}, Your password has been changed, please visit <a href='https://h-ticketbox.herokuapp.com/user/login'>this page</a> to log in."""
         send_email(token, user.email, content)
     return render_template('resetpassword.html')
 
@@ -137,12 +137,16 @@ def add_to_cart(id):
         amount =  int(request.form['amount'])
         tickettype = Tickettype.query.get(request.args.get('tickettype_id'))
         print('user order: ', tickettype.id, amount)
-        orderitem = Orderitem(
-            order_id = order.id,
-            tickettype_id = tickettype.id,
-            amount = amount
-        )
-        db.session.add(orderitem)
+        item = Orderitem.query.filter_by(tickettype_id = tickettype.id, order_id = order.id).first()
+        if item:
+            item.amount += amount
+        else:
+            orderitem = Orderitem(
+                order_id = order.id,
+                tickettype_id = tickettype.id,
+                amount = amount
+            )
+            db.session.add(orderitem)
         tickettype.stock = tickettype.stock - amount
         db.session.commit()
         print('added to order', orderitem.order_id, orderitem.tickettype_id, orderitem.amount)
@@ -174,13 +178,15 @@ def update_cart(id):
         for index, item in enumerate(order.orderitems):
             new_amount = int(update_list[f'amount_{index+1}'])
             change = new_amount - item.amount
-            if change >= 0:
+            if change > 0:
                 if item.tickettype.stock >= change:
                     item.tickettype.stock -= change
                     item.amount = new_amount
                 else:
                     flash(f"We dont have enough ticket type {item.tickettype.name}", 'warning')
                     return redirect(url_for('user.cart', id=id))
+            elif change = 0:
+                db.session.delete(item)
             else:
                 item.tickettype.stock += change
                 item.amount = new_amount

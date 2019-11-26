@@ -8,7 +8,7 @@
 {% if not event %}
 <h1 class="mt-5 pt-5">There is no event with id#{{id}} yet</h1>
 {% else %}
-<section class="row container-fluid m-0 p-0 mt-5 pt-4" style="width:100vw;height:auto;">
+<section class="row container-fluid m-0 p-0 mt-5 pt-4" style="width:100vw;height:auto;overflow-x:hidden;">
     {% if event.images|length > 0 %}
     <img src={{event.images[0].image_url}} alt="event_image" class="w-100 h-100">    
     {% endif %}
