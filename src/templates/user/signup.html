@@ -8,34 +8,36 @@
 <section id="mainSection">
 <div class="userForm d-flex flex-column align-items-center">
     <form id="centerForm" method="POST">
-        <label id="centerFormLabel" class="mb-5" form="centerForm">Create a new account</label>
+        <label id="centerFormLabel" class="my-5" form="centerForm">Create a new account</label>
 
-        <div class="col-md-12 p-1 m-0">
-            <div class="md-form">
+        <div class="row p-1 m-0 mb-5">
+            <div class="col-12 md-form p-0 m-0">
                 <input name="username" type="username" id="inputUserName" class="md-form-control" required=""
                     onkeyup='handleFormInput(this)' autofocus="">
                 <label for="inputUserName">Username</label>
             </div>
         </div>
 
-        <div class="col-md-6 p-1 m-0">
-            <div class="md-form">
-                <input name="first_name" type="firstname" id="inputFirstName" class="md-form-control"
-                    onkeyup='handleFormInput(this)' autofocus="">
-                <label for="inputFirstName">First name</label>
+        <div class="row p-0 m-0 my-5">
+            <div class="col-md-6 p-1 m-0">
+                <div class="col-12 p-0 m-0 md-form">
+                    <input name="first_name" type="firstname" id="inputFirstName" class="md-form-control"
+                        onkeyup='handleFormInput(this)' autofocus="">
+                    <label for="inputFirstName">First name</label>
+                </div>
+            </div>
+    
+            <div class="col-md-6 p-1 m-0">
+                <div class="col-12 md-form p-0 m-0">
+                    <input name="last_name" type="lastname" id="inputLastName" class="md-form-control"
+                        onkeyup='handleFormInput(this)' autofocus="">
+                    <label for="inputLastName">Lastname</label>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6 p-1 m-0">
-            <div class="md-form">
-                <input name="last_name" type="lastname" id="inputLastName" class="md-form-control"
-                    onkeyup='handleFormInput(this)' autofocus="">
-                <label for="inputLastName">Lastname</label>
-            </div>
-        </div>
-
-        <div class="col-md-12 p-1 m-0">
-            <div class="input-group date form_date md-form" data-date="2019-11-16"
+        <div class="row p-1 m-0 my-5">
+            <div class="col-12 p-0 m-0 input-group date form_date md-form" data-date="2019-11-16"
                 data-date-format="dd MM yyyy" data-link-field="dtp_input2">
                 <input id="ending_date" required name="birthday" class="md-form-control" type="text" value=""
                     readonly onchange='handleFormInput_enddate(this)'>
@@ -45,31 +47,31 @@
             </div>
         </div>
 
-        <div class="col-md-12 p-1 m-0">
-            <div class="md-form">
+        <div class="row p-1 m-0 my-5">
+            <div class="col-12 p-0 m-0 md-form">
                 <input name="email" type="email" id="inputEmail" class="md-form-control" required=""
                     onkeyup='handleFormInput(this)' autofocus="">
                 <label for="inputEmail">Email address</label>
             </div>
         </div>
 
-        <div class="col-md-12 p-1 m-0">
-            <div class="md-form">
+        <div class="row p-1 m-0 my-5">
+            <div class="col-12 p-0 m-0 md-form">
                 <input name="password" type="password" id="inputPassword" class="md-form-control"
                     onkeyup='handleFormInput(this)' required="">
                 <label for="inputPassword">Password</label>
             </div>
         </div>
 
-        <div class="col-md-12 p-1 m-0">
-            <div class="md-form">
+        <div class="row p-1 m-0 my-5">
+            <div class="col-12 p-0 m-0 md-form">
                 <input name="avatar_url" type="avatarurl" id="inputAvatarUrl" class="md-form-control"
                     onkeyup='handleFormInput(this)' required="">
                 <label for="inputAvatarUrl">Avatar URL</label>
             </div>
         </div>
 
-        <div class="row container m-0 py-0 px-3 mb-5">
+        <div class="row container m-0 py-0 px-3 my-5">
             <label class="links py">
                 <input class="links mr-3" type="checkbox" value="agree">Agree to all the terms & policies
             </label>
