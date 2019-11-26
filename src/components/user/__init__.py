@@ -26,10 +26,12 @@ def send_email(token, email, content):
     else:
         print('Success!')
 
-@user_blueprint.route('/', methods=['GET'])
+@user_blueprint.route('/<id>', methods=['GET'])
 @login_required
-def root():
-    return render_template('index.html')
+def profile():
+    orders = Order.query.filter_by(client_id = current_user.id, isPaid = True).all()
+    
+    return render_template('profile.html', orders=orders)
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
