@@ -8,7 +8,7 @@
     <div class="container d-flex flex-column align-items-center mt-5 pt-5 mx-auto" id="mainForm">
         <div class="col-12 m-0 p-0  d-flex flex-column align-items-center ">
             <label id="centerFormLabel" form="centerForm" class="mt-5 text-center">{{current_user.username}}'s Profile</label>
-            <div class="row m-0 p-0">
+            <div class="row container-fluid m-0 p-0">
                 <div class="col-md-12 p-1 m-0">
                     <div class="md-form">
                         <h4>Id: #{{current_user.id}} - Email :{{current_user.email}}</h4>
@@ -22,7 +22,7 @@
             <h4>Order #{{order.id}}:</h4>
             {% if order.orderitems|length > 0 %}
             {% for item in order.orderitems %}
-            <div class="row m-0 p-0">
+            <div class="row container-fluid m-0 p-0">
                 <div class="col-md-5 p-1 m-0">
                     <div class="md-form">
                         <h4>{{loop.index}}. {{item.tickettype.name}}</h4>
@@ -31,10 +31,7 @@
                 </div>
 
                 <div class="col-md-4 p-1 m-0 inline-form">
-                    <h4><span>X</span>
-                        <input class="md-form-control rounded-right-0 amountInput ml-5" id="input{{item.id}}" required
-                            name="amount_{{loop.index}}" type="number" value="{{item.amount}}" min="0" max="" step="1"
-                            data-number-to-fixed="0" data-number-stepfactor="1" form="cartForm{{order.id}}" /></h4>
+                    <h4><span>X {{item.amount}}</span></h4>
                 </div>
                 <div class="col-md-3 p-1 m-0 d-flex justify-content-end">
                     <h4>{{item.tickettype.price*item.amount}} VND</h4>
@@ -42,7 +39,7 @@
                 <hr class="container-fluid m-0 p-0" />
             </div>
             {% endfor %}
-            <div class="row m-0 p-0 mb-5 d-flex justify-content-end">
+            <div class="row container-fluid m-0 p-0 mb-5 d-flex justify-content-end">
                 <h3>Total: <span class="ml-5 h3 lead">{{total}}</span> VND</h3>
             </div>
             <hr />
