@@ -28,10 +28,9 @@ def send_email(token, email, content):
 
 @user_blueprint.route('/<id>', methods=['GET'])
 @login_required
-def profile():
+def profile(id):
     orders = Order.query.filter_by(client_id = current_user.id, isPaid = True).all()
-    
-    return render_template('profile.html', orders=orders)
+    return render_template('profile.html', orders=orders, id=id)
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
@@ -40,10 +39,10 @@ def login():
         user = user.check_email(request.form['email'])
         if not user:
             flash("Can not find user", "danger")
-            redirect(url_for("user.login"))
+            return redirect(url_for("user.login"))
         if not user.check_password(request.form['password']):
             flash("Invalid password", "danger")
-            redirect(url_for("user.login"))
+            return redirect(url_for("user.login"))
         login_user(user)
         # current_user.order_amount = 0
         # if len(current_user.orders) > 0 and current_user.orders[-1].isPaid == False:
@@ -73,8 +72,8 @@ def signup():
                 new_user.last_name = request.form['last_name'],
             new_user.set_password(request.form['password'])
             client_role = Role.query.get(2)
-            client_role.users.append(new_user)
             db.session.add(new_user)
+            client_role.users.append(new_user)
             db.session.commit()
             flash("successfully added user {0}".format(new_user.username), "success")
             return redirect(url_for('user.login'))
