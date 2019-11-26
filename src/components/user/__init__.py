@@ -30,7 +30,6 @@ def send_email(token, email, content):
 @login_required
 def profile(id):
     orders = Order.query.filter_by(client_id = current_user.id, isPaid = True).all()
-    print('first orders queried:', orders[0].id)
     return render_template('profile.html', orders=orders, id=id)
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
