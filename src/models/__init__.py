@@ -106,10 +106,10 @@ class Organizer(db.Model):
 class Tickettype(db.Model):
     __tablename__ = 'tickettypes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False, unique=True)
+    name = db.Column(db.String(200), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     stock = db.Column(db.Integer, nullable=False)
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.BigInteger, nullable=False)
     
     #ticket properties:
     orders = db.relationship('Orderitem', backref='tickettype')

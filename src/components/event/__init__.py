@@ -58,7 +58,7 @@ def create_organizer():
         db.session.add(new_org)
         db.session.commit()
         flash(f"successfully created organizer: {new_org.name}", "success")
-        return redirect(f'/event/{origin}')
+        return redirect(url_for('event.create_event'))
     return render_template('createorganizer.html', origin=origin)
 
 @event_blueprint.route('/<id>/createticket', methods=['GET', 'POST'])
